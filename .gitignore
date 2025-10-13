@@ -1,0 +1,68 @@
+# --- OS / エディタ ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Python ビルド/キャッシュ ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytype/
+.mypy_cache/
+ruff_cache/
+
+# --- 仮想環境 ---
+venv/
+.venv/
+.env        # ルート直下の環境ファイル（機密）
+**/.env     # サブディレクトリの.envも念のため
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+.notebooks_cache/
+**/.ipynb_checkpoints/
+
+# --- データ/成果物（重い or 再生成可能）---
+data/
+datasets/
+inputs/
+outputs/
+runs/                  # TensorBoard / Lightning logs など
+logs/
+checkpoints/
+models/
+wandb/
+mlruns/
+tensorboard/
+tb_logs/
+
+# 学習済みモデルや中間成果物の拡張子
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.npz
+*.npy
+
+# --- 一時ファイル ---
+*.log
+*.out
+*.tmp
+*.cache
+tmp/
+**/.pytest_cache/
+.coverage
+*.coverage
+htmlcov/
+
+# --- Docker 関連（機密が入りやすい）---
+docker/.env
+docker-compose.override.yml
+
+# --- その他（画像生成物・図表など任意）---
+reports/
+figures/
