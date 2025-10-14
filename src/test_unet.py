@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""
-U-Net++モデルを使った画像セグメンテーション推論スクリプト
-
-このスクリプトは、Test_Unet.ipynbから変換されたPythonソースコードです。
-学習済みU-Net++モデルを使って画像セグメンテーションの推論を行います。
-"""
 
 import os
 import numpy as np
