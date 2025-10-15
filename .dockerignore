@@ -1,0 +1,63 @@
+# Git関連
+.git
+.gitignore
+
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 仮想環境
+venv/
+env/
+ENV/
+
+# IDE関連
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# ログ・キャッシュ
+*.log
+.cache/
+.pytest_cache/
+
+# Jupyter notebook
+.ipynb_checkpoints/
+
+# データファイル（大きなファイルは除外）
+data/samples/
+*.bmp
+*.png
+*.jpg
+*.jpeg
+
+# 学習済みモデル（必要に応じて）
+models/*.pth
+models/*.pt
+
+# その他
+README.md
+LICENSE

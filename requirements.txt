@@ -1,0 +1,29 @@
+# 基本ライブラリ
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.24.0
+pillow>=9.5.0
+tqdm>=4.65.0
+
+# セグメンテーション関連
+segmentation-models-pytorch>=0.3.0
+albumentations>=1.3.0
+
+# データ処理
+opencv-python>=4.8.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Jupyter関連
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipywidgets>=8.0.0
+
+# 可視化・ログ
+tensorboard>=2.13.0
+wandb>=0.15.0
+
+# その他
+pandas>=2.0.0
+scipy>=1.11.0
