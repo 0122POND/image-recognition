@@ -85,8 +85,87 @@ pip install numpy
 - **マスク画像**: PNG 形式（バイナリマスク）
 - **出力マスク**: PNG 形式（バイナリマスク）
 
+## Docker 環境での実行
+
+### 前提条件
+
+- Docker & Docker Compose
+- NVIDIA Docker Runtime（GPU 使用時）
+- NVIDIA GPU（推奨）
+
+### セットアップ
+
+```bash
+# 1. セットアップスクリプト実行
+chmod +x scripts/setup_local.sh
+./scripts/setup_local.sh
+
+# 2. Dockerイメージビルド
+docker-compose build
+```
+
+### 使用方法
+
+#### 学習実行
+
+```bash
+# 学習を実行
+docker-compose up unet-training
+
+# バックグラウンド実行
+docker-compose up -d unet-training
+```
+
+#### 推論実行
+
+```bash
+# 推論を実行
+docker-compose --profile inference up unet-inference
+```
+
+#### Jupyter Lab 起動
+
+```bash
+# Jupyter Labを起動（http://localhost:8888）
+docker-compose --profile jupyter up jupyter
+```
+
+### ディレクトリ構造（ローカル環境）
+
+```
+image-recognition/
+├── src/
+│   ├── train_unet.py      # 学習用スクリプト
+│   ├── test_unet.py       # 推論用スクリプト
+│   └── config_local.py    # ローカル用設定
+├── data/
+│   ├── train/
+│   │   ├── images/        # 学習用画像
+│   │   └── masks/         # 学習用マスク
+│   ├── val/
+│   │   ├── images/        # 検証用画像
+│   │   └── masks/         # 検証用マスク
+│   └── test/
+│       ├── images/        # テスト用画像
+│       └── predicted_masks/ # 推論結果
+├── models/                # 学習済みモデル
+├── runs/                  # 学習ログ・結果
+├── logs/                  # ログファイル
+├── Dockerfile
+├── docker-compose.yml
+└── requirements.txt
+```
+
 ## 注意事項
+
+### Google Colab 環境
 
 - このプロジェクトは Google Colab 環境での使用を前提としています
 - パス設定は Google Drive のマウントを前提としています
+
+### ローカル環境
+
+- Docker 環境では`src/config_local.py`の設定を使用
+- データセットは`data/`ディレクトリに配置
+- GPU 使用時は NVIDIA Docker Runtime が必要
 - ローカル環境で使用する場合は、Config クラス内のパスを適切に変更してください

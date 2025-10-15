@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  unet-training:
+    build: .
+    container_name: unet-segmentation
+    runtime: nvidia # NVIDIA GPUサポート
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      # データディレクトリをマウント
+      - ./data:/app/data
+      # 学習結果を保存するディレクトリ
+      - ./runs:/app/runs
+      # モデル保存ディレクトリ
+      - ./models:/app/models
+      # ログディレクトリ
+      - ./logs:/app/logs
+    ports:
+      - "8888:8888" # Jupyter notebook用
+      - "6006:6006" # TensorBoard用
+    command: python src/train_unet.py
+    restart: unless-stopped
+
+  unet-inference:
+    build: .
+    container_name: unet-inference
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - ./data:/app/data
+      - ./runs:/app/runs
+      - ./models:/app/models
+      - ./logs:/app/logs
+    command: python src/test_unet.py
+    profiles:
+      - inference # 推論用は別プロファイル
+
+  jupyter:
+    build: .
+    container_name: unet-jupyter
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - ./:/app
+    ports:
+      - "8888:8888"
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+    profiles:
+      - jupyter
